@@ -19,6 +19,13 @@ jobs:
       with:
         docs-folder: "docs/"
 
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/$default-branch'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: "docs/_build/html/"
+
   docs-pdf:
     if: |
       github.event_name == 'pull_request' ||
